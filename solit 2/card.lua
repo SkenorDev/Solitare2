@@ -34,17 +34,20 @@ function CardClass:isMouseOver(mx, my)
 end
 
 function CardClass:findPosition()
+   -- shouldnt happen
   if self.table == nil then
     return
     end
-  
+   -- get name of current stack
   local stack = state[self.table]
+  -- if in scoring stack
 if self.table=="hearts" or self.table=="tiles" or self.table=="pikes" or self.table=="clovers"  then
   x=880
   y= scoreyIndex[self.table]-90
   self.position = Vector(x,y)
   return
-  end 
+end 
+  -- if in draw
    if self.table =="draw" then
     x=offsetIndex[self.table]
     for i=1, #stack do
@@ -54,6 +57,7 @@ if self.table=="hearts" or self.table=="tiles" or self.table=="pikes" or self.ta
     end
     y = 180+((pos - 1) * 120)
   else
+  -- if in one of seven stacks
    for i=1, #stack do
      x=offsetIndex[self.table]-80
       if self==stack[i] then
